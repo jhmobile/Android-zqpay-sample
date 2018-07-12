@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_account_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="登录"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_account_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="支付"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_account_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="银行卡"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_update_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="忘記密碼"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_forget_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="修改密碼"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_account_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="退出登录"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+</LinearLayout>

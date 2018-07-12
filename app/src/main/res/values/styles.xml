@@ -1,0 +1,15 @@
+<resources>
+
+    <style name="AppTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/C17</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">@color/C2</item>
+        <item name="android:textSize">@dimen/F3</item>
+        <item name="android:windowAnimationStyle">@style/activityAnimation</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <!--项目主体样式一定要添加该属性，否则会导致密码键盘一直大写-->
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+</resources>
