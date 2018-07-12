@@ -1,13 +1,12 @@
 apply plugin: 'com.android.application'
-apply plugin: 'android-apt'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.zl.simple"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
 
@@ -20,27 +19,23 @@ android {
             }
             release {
                 minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             }
         }
     }
-    repositories {
-        flatDir {
-            dirs 'libs'
-        }
+}
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-annotations:24.2.0'
+        force 'com.android.support:recyclerview-v7:24.2.0'
     }
 }
 dependencies {
-    compile fileTree(include: '*.jar', dir: 'libs')
-}
-dependencies {
-    //noinspection GradleCompatible
-    compile 'com.jakewharton:butterknife:8.5.1'
-    apt 'com.jakewharton:butterknife-compiler:8.5.1'
-    compile ('com.zqpay.zl:zqpay:1.0.2',{
+    compile ('com.zqpay.zl:zqpay:1.0.3',{
         exclude group: 'com.android.support', module: 'support-v4'
     })
-//    compile project(':library-zqpay')
-//    compile(name: 'library-zqpay-release', ext: 'aar')
+// compile project(':library-zqpay')
 
-//    compile 'com.zqpay.zl:lib-zqpay-zl:1.0.0'
+    compile fileTree(include: '*.jar', dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24.0.0'
 }

@@ -1,1 +1,3 @@
 include ':app'
+//,':library-zqpay'
+//project(':library-zqpay').projectDir = new File('../android-zlzqpay/library-zqpay')
