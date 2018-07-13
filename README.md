@@ -1,8 +1,5 @@
 # 支付SDK 集成文档
 
-### 测试：
-###### appkey：   jh23fe7badc465548b
-###### appSecret：29e4ceded0ef44839a7293ec7fd4b3e7
 ### SDK交互流程图
 
 ![结构图](https://github.com/jhmobile/Android-zqpay-sample/blob/master/app/image/structure.png)
@@ -36,7 +33,7 @@ configurations.all {
 }
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.0.5',{
+    compile ('com.zqpay.zl:zqpay:1.1.0',{
     exclude group: 'com.android.support', module: 'support-v4'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
