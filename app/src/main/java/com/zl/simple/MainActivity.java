@@ -39,7 +39,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.tr_update_pwd://修改支付密码
                 // TODO: 2018/7/13  参数：context    类型： Context  描述 ： 上下为对象           示例：MainActivity.this
-                PaymentManager.getInstance().forgetPayPassword(MainActivity.this);
+                PaymentManager.getInstance().updatePayPassword(MainActivity.this);
                 break;
             case R.id.tr_account_pay://支付
                 // TODO: 2018/7/12   参数：context    类型： Context  描述 ： 上下为对象           示例：MainActivity.this
@@ -52,12 +52,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                         .callBack(new PaymentResultCallBack() {
                             @Override
                             public void onPaymentError(String code, String errorMsg, String orderNo) {//支付成功回调
-                                ToastUtil.show(MainActivity.this, errorMsg, 0);
+
+                                ToastUtil.show(MainActivity.this,orderNo+":"+errorMsg, 0);
                             }
 
                             @Override
                             public void onPaymentSuccess(String orderNo) {
-                                ToastUtil.show(MainActivity.this, "成功", 0);//支付失败回调
+                                ToastUtil.show(MainActivity.this, orderNo+":成功", 0);//支付失败回调
                             }
                         });
                 break;

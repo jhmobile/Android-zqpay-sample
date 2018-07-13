@@ -29,13 +29,14 @@ allprojects {
 <pre><code>
 configurations.all {
     resolutionStrategy {
+        //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
         force 'com.android.support:support-annotations:24.0.0'
         force 'com.android.support:recyclerview-v7:24.0.0'
     }
 }
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.0.4',{
+    compile ('com.zqpay.zl:zqpay:1.0.5',{
     exclude group: 'com.android.support', module: 'support-v4'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
@@ -44,11 +45,13 @@ dependencies{
 </code></pre>
 
 ### 第三步：资源配置
-#### 1，color.xml中添加如下代码
+
+#### color.xml中添加如下代码
+
+###### 可定义sdk按钮和文字主题颜色值，如果不需要改变，就直接把下面两行写到color文件中即可(该资源必须添加)
 
 ![color.xml](https://github.com/jhmobile/Android-zqpay-sample/blob/master/app/image/color.png)
 
-#### 2，mipmap,把sample中对于的图片拷贝过去，文件名为：ic_dlx
 
 ### 第四步：API调用
 
@@ -59,11 +62,34 @@ PaymentManager.getInstance()
         .initialize(context,"appKey","appSecret");
 
 </code></pre>
+<p>
+setIsProduction(boolean isProduction)
+</p>
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:|:-:| 
+|isProduction|boolean|表示当前app运行的环境：true  生产即线上环境   false 测试环境|否|false|
+ 
+<p>
+initialize(Context context，String appkey，String appSecret)
+</P>
+
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:|:-:| 
+|appkey|String|sdk对当前应用的唯一标示账户，有sdk提供方给出|否|jh23fe7badc465548b|
+|appSecret|String|sdk对当前应用的唯一标示密钥，有sdk提供方给出|否|29e4ceded0ef44839a7293ec7fd4b3e7| 
+  
 #### 2，设置用户信息
 <pre><code>
 PaymentManager.getInstance().setUser("userId","token")
 
 </code></pre>
+
+<p>setUser(String userId, String token)</P>
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:| :-:| 
+|userId|String|用户通过调用证联接口获取到的当前用户唯一标示|否|2018917|
+|token|String|用户通过调用证联接口获取到的userId的密钥|否|QFsiIxVJEXE=|
+
 #### 3， 支付
 <pre><code>
 PaymentManager.getInstance().pay(context, "订单号", 订单生成时间的时间戳, "订单金额", "订单描述")
@@ -79,40 +105,7 @@ PaymentManager.getInstance().pay(context, "订单号", 订单生成时间的时�
        });
 
 </code></pre>
-#### 3，我的银行卡
-<pre><code>
-PaymentManager.getInstance().gotoBankList(context);
 
-</code></pre>
-
-#### 4，修改交易密码
-<pre><code>
-PaymentManager.getInstance().updatePayPassword(context);
-
-</code></pre>
-### 相关参数说明：
-
-##### 1，setUser(String userId, String token)
-|参数|类型|描述|是否可为空|示例|
-|:-:|:-:|:-:|:-:| :-:| 
-|userId|String|用户通过调用证联接口获取到的当前用户唯一标示|否|2018917|
-|token|String|用户通过调用证联接口获取到的userId的密钥|否|QFsiIxVJEXE=|
-
-
-##### 2，setIsProduction(boolean isProduction)
-|参数|类型|描述|是否可为空|示例|
-|:-:|:-:|:-:|:-:|:-:| 
-|isProduction|boolean|表示当前app运行的环境：true  生产即线上环境   false 测试环境|否|false|
- 
-
-##### 3，initialize(Context context，String appkey，String appSecret)
-
-|参数|类型|描述|是否可为空|示例|
-|:-:|:-:|:-:|:-:|:-:| 
-|appkey|String|sdk对当前应用的唯一标示账户，有sdk提供方给出|否|jh23fe7badc465548b|
-|appSecret|String|sdk对当前应用的唯一标示密钥，有sdk提供方给出|否|29e4ceded0ef44839a7293ec7fd4b3e7|   
-
-##### 4，支付 
 <P>
 PaymentManager.getInstance().pay(Context context, String orderNo, String orderTime, String amount,                   String desc).callBack(PaymentResultCallBack callBack）
 </p>
@@ -125,7 +118,20 @@ PaymentManager.getInstance().pay(Context context, String orderNo, String orderTi
 |desc|String|订单描述信息|是|小熊饼干商店|
 |callBack|PaymentResultCallBack|支付结果回调接口|否|参考sample代码|
 
-###### 支付结果code码描述
+#### 3，我的银行卡
+<pre><code>
+PaymentManager.getInstance().gotoBankList(context);
+
+</code></pre>
+
+#### 4，修改交易密码
+<pre><code>
+PaymentManager.getInstance().updatePayPassword(context);
+
+</code></pre>
+
+
+#### 支付结果code码描述
 
 |code|描述|
 |:-:|:-:|
