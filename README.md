@@ -35,7 +35,7 @@ configurations.all {
 }
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.0.1',{
+    compile ('com.zqpay.zl:zqpay:1.0.4',{
     exclude group: 'com.android.support', module: 'support-v4'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
