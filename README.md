@@ -62,9 +62,11 @@ PaymentManager.getInstance()
         .initialize(context,"appKey","appSecret");
 
 </code></pre>
+
 <p>
 setIsProduction(boolean isProduction)
 </p>
+
 |参数|类型|描述|是否可为空|示例|
 |:-:|:-:|:-:|:-:|:-:| 
 |isProduction|boolean|表示当前app运行的环境：true  生产即线上环境   false 测试环境|否|false|
@@ -84,7 +86,10 @@ PaymentManager.getInstance().setUser("userId","token")
 
 </code></pre>
 
-<p>setUser(String userId, String token)</P>
+<p>
+setUser(String userId, String token)
+</P>
+
 |参数|类型|描述|是否可为空|示例|
 |:-:|:-:|:-:|:-:| :-:| 
 |userId|String|用户通过调用证联接口获取到的当前用户唯一标示|否|2018917|
