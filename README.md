@@ -1,11 +1,15 @@
 # 支付SDK 集成文档
 
-## 测试：
-appkey：   jh23fe7badc465548b
-appSecret：29e4ceded0ef44839a7293ec7fd4b3e7
+### 测试：
+###### appkey：   jh23fe7badc465548b
+###### appSecret：29e4ceded0ef44839a7293ec7fd4b3e7
+### SDK交互流程图
 
-## 第一步：根项目
-在项目的build.gradle中添加mavn地址：
+![结构图](https://github.com/jhmobile/Android-zqpay-sample/blob/master/app/image/structure.png)
+
+### 第一步：根项目
+##### 在项目的build.gradle中添加mavn地址：
+<pre><code>
 allprojects {
     repositories {
         ......
@@ -17,9 +21,12 @@ allprojects {
         }
     }
 }
-## 第二步:主项目moudle（app目录下）
-在主项目的build.gradle中添加sdk对应引用：
+</code></pre>
 
+### 第二步:主项目moudle（app目录下）
+
+##### 在主项目的build.gradle中添加sdk对应引用：
+<pre><code>
 configurations.all {
     resolutionStrategy {
         force 'com.android.support:support-annotations:24.0.0'
@@ -34,75 +41,92 @@ dependencies{
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
    compile 'com.android.support:appcompat-v7:26.1.0'
 }
-## 第三步：资源配置
+</code></pre>
+
+### 第三步：资源配置
 #### 1，color.xml中添加如下代码
 
-<color name="zqpay_theme">#ff9800</color>
-<color name="zqpay_theme_title">#ff9000</color>
+![color.xml](https://github.com/jhmobile/Android-zqpay-sample/blob/master/app/image/color.png)
 
 #### 2，mipmap,把sample中对于的图片拷贝过去，文件名为：ic_dlx
 
-## 第四步：API调用
+### 第四步：API调用
 
 #### 1，在application调用初始化
-
+<pre><code>
 PaymentManager.getInstance()
-        .setIsProduction(false)
+        .setIsProduction(false)//设置当前用于的环境
         .initialize(context,"appKey","appSecret");
 
-
+</code></pre>
 #### 2，设置用户信息
+<pre><code>
 PaymentManager.getInstance().setUser("userId","token")
 
+</code></pre>
 #### 3， 支付
-
+<pre><code>
 PaymentManager.getInstance().pay(context, "订单号", 订单生成时间的时间戳, "订单金额", "订单描述")
         .callBack(new PaymentResultCallBack() {
             @Override
- public void onPaymentError(String code, String errorMsg, String orderNo) {
+           public void onPaymentError(String code, String errorMsg, String orderNo) {
                 ToastUtil.show(MainActivity.this, errorMsg, 0);
- }
-
+           }
             @Override
- public void onPaymentSuccess(String orderNo) {
+           public void onPaymentSuccess(String orderNo) {
                 ToastUtil.show(MainActivity.this, "成功", 0);
- }
-        });
+           }
+       });
 
- 3，我的银行卡
-
+</code></pre>
+#### 3，我的银行卡
+<pre><code>
 PaymentManager.getInstance().gotoBankList(context);
-4， 忘记交易密码
 
-PaymentManager.getInstance().forgetPayPassword(context);
-5，修改交易密码
+</code></pre>
 
+#### 4，修改交易密码
+<pre><code>
 PaymentManager.getInstance().updatePayPassword(context);
- 相关参数说明：
 
-1，设置用户信息   setUser(String params1, String params2)
+</code></pre>
+### 相关参数说明：
 
-params1：获取到的用户在证联的userid
-params2：获取到的用户在证联的token
-setUser方法  如果用户登录成功，在application里进行调用，否则，需要在用户获取到证联相关uswrId和token的时候再次调用
-
-2，设置环境    setIsProduction(boolean params)
-
- params： true：生产 false：测试
-
-setIsProduction   设置当前应用的环境
-
-3，初始化    initialize(Context context，String appkey，String appSecret)
-
-context:   上下文对象
-
-appkey     sdk给出的当前平台的appkey
-
-appSecret  sdk给出的当前平台的appSecret
-
-参数表格：
-
-名字   类型   解释   示例
+##### 1，setUser(String userId, String token)
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:| :-:| 
+|userId|String|用户通过调用证联接口获取到的当前用户唯一标示|否|2018917|
+|token|String|用户通过调用证联接口获取到的userId的密钥|否|QFsiIxVJEXE=|
 
 
+##### 2，setIsProduction(boolean isProduction)
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:|:-:| 
+|isProduction|boolean|表示当前app运行的环境：true  生产即线上环境   false 测试环境|否|false|
+ 
 
+##### 3，initialize(Context context，String appkey，String appSecret)
+
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:|:-:| 
+|appkey|String|sdk对当前应用的唯一标示账户，有sdk提供方给出|否|jh23fe7badc465548b|
+|appSecret|String|sdk对当前应用的唯一标示密钥，有sdk提供方给出|否|29e4ceded0ef44839a7293ec7fd4b3e7|   
+
+##### 4，支付 
+<P>
+PaymentManager.getInstance().pay(Context context, String orderNo, String orderTime, String amount,                   String desc).callBack(PaymentResultCallBack callBack）
+</p>
+
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:|:-:| 
+|orderNo|String|订单号，当前订单的唯一标示|否|2018090422345|
+|orderTime|long|订单生成的时间，格式：时间戳|否|1531450606|
+|amount|String|订单支付的金额，格式：两位小数|否|45.57|
+|desc|String|订单描述信息|是|小熊饼干商店|
+|callBack|PaymentResultCallBack|支付结果回调接口|否|参考sample代码|
+
+###### 支付结果code码描述
+
+|code|描述|
+|:-:|:-:|
+|0|成功|
