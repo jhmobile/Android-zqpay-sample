@@ -31,7 +31,7 @@ configurations.all {
     }
 }
 dependencies {
-    compile ('com.zqpay.zl:zqpay:1.1.0',{
+    compile ('com.zqpay.zl:zqpay:1.1.1',{
         exclude group: 'com.android.support', module: 'support-v4'
     })
 // compile project(':library-zqpay')
