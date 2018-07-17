@@ -2,6 +2,19 @@
 
 ### 当前最新版本：v1.1.1
 
+### SDK包含的业务功能
+
+1. 绑定银行卡(未提供调起API，在首次支付等环节由SDK调起))
+2. 收银台支付（提供调起和回调API）
+3. 银行卡管理（提供调起API）
+4. 修改支付密码、忘记支付密码（提供调起API）
+
+### 非原生页面如何使用SDK
+
+使用非原生技术的App内页面（如H5、React Native、Weex等）如需调起SDK，需在App内部通过原生与非原生通信的API，封装SDK接口后供非原生页面调用即可。
+如果需要回调，可以在非原生页面约定好回调接口，由原生模块收到SDK回调后调用非原生页面的约定接口即可实现回调。
+
+
 ### SDK交互流程图
 
 ![结构图](https://github.com/jhmobile/Android-zqpay-sample/blob/master/app/image/structure.png)
