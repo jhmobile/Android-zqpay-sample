@@ -11,15 +11,32 @@ android {
         versionName "1.0"
 
     }
+    signingConfigs {
+        debug {
+            storeFile file("cert/android.keystore")
+            storePassword "123456"
+            keyAlias "android.keystore"
+            keyPassword "123456"
+        }
+
+        release {
+            storeFile file("cert/android.keystore")
+            storePassword "123456"
+            keyAlias "android.keystore"
+            keyPassword "123456"
+        }
+    }
     buildTypes {
         buildTypes {
             debug {
                 debuggable true
                 minifyEnabled false
+                signingConfig signingConfigs.debug
             }
             release {
-                minifyEnabled false
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                minifyEnabled true
+                signingConfig signingConfigs.release
+                proguardFiles 'proguard-project.txt'
             }
         }
     }
@@ -31,7 +48,7 @@ configurations.all {
     }
 }
 dependencies {
-    compile ('com.zqpay.zl:zqpay:1.1.1',{
+    compile ('com.zqpay.zl:zqpay:1.1.2',{
         exclude group: 'com.android.support', module: 'support-v4'
     })
 // compile project(':library-zqpay')

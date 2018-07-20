@@ -10,7 +10,7 @@ public class AApplication extends Application {
         // TODO: 2018/7/13 SDK初始化
         PaymentManager.getInstance()
                 .setIsProduction(false)//设置运行环境，true:线上生产环境    false:测试环境
-                .initialize(this, "jh31cff83f764e1c2e", "e05b875b70361b99f36dfb6a23730e93");//appkey，appsecret
+                .initialize(this, "jh23fe7badc465548b", "29e4ceded0ef44839a7293ec7fd4b3e7");//appkey，appsecret
 
     }
 

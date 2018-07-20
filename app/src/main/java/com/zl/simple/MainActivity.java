@@ -45,10 +45,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 // TODO: 2018/7/12   参数：context    类型： Context  描述 ： 上下为对象           示例：MainActivity.this
                 // TODO: 2018/7/13   参数：orderNo    类型： String   描述 ： 订单号               示例：2018060733456
                 // TODO: 2018/7/13   参数：orderTime  类型： long     描述 ： 订单生成的时间，格式为时间戳       示例：1531450606
+                // TODO: 2018/7/13   参数：instuId    类型： String   描述 ： 订单的商户号                      示例：12345
+                // TODO: 2018/7/13   参数：instuName  类型： String   描述 ： 订单的商户名称                    示例：玛雅哈商店
                 // TODO: 2018/7/13   参数：amount     类型： String   描述 ： 订单金额，保留两位小时             示例：56.65
-                // TODO: 2018/7/13   参数：desc       类型： String   描述 ： 订单描述             示例： 小熊皮鞋
+                // TODO: 2018/7/13   参数：desc       类型： String   描述 ： 订单描述             示例： 这是一笔主动发起的祝福
                 // 上下文，定单号，订单生成时间的时间戳，订单金额，订单描述
-                PaymentManager.getInstance().pay(MainActivity.this, System.currentTimeMillis() + "", System.currentTimeMillis(), "548.54", "支付")
+                PaymentManager.getInstance().pay(MainActivity.this, System.currentTimeMillis() + "", System.currentTimeMillis(),
+                        "12345","玛雅哈商店", "5048.54", "这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福")
                         .callBack(new PaymentResultCallBack() {
                             @Override
                             public void onPaymentError(String code, String errorMsg, String orderNo) {//支付成功回调

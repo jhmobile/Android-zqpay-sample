@@ -1,6 +1,6 @@
 # 支付SDK 集成文档
 
-### 当前最新版本：v1.1.1
+### 当前最新版本：v1.1.2
 
 ### SDK包含的业务功能
 
@@ -56,14 +56,20 @@ dependencies{
 }
 </code></pre>
 
-### 第三步：资源配置
+### 第三步：换肤
 
-#### color.xml中添加如下代码
+#### 1，color.xml中添加如下代码
 
-###### 可定义sdk按钮和文字主题颜色值，如果不需要改变，就直接把下面两行写到color文件中即可(该资源必须添加)
+###### 可定义sdk导航栏，按钮和文字主题颜色值，如果需要改变就直接把下面的color定义添加到color文件中，根据需要改变颜色内容
 
 ![color.xml](https://github.com/jhmobile/Android-zqpay-sample/blob/master/app/image/color.png)
 
+#### 2，在mipmap中添加对应的导航栏返回和关闭图片，图片的命名如下：
+
+###### 返回图片：zqpay_bar_ic_back.png
+###### 关闭图片：zqpay_bar_ic_close
+
+##### 注：如果不需要进行换肤操作，以上两步可以忽略
 
 ### 第四步：API调用
 
@@ -109,7 +115,7 @@ setUser(String userId, String token)
 
 #### 3， 支付
 <pre><code>
-PaymentManager.getInstance().pay(context, "订单号", 订单生成时间的时间戳, "订单金额", "订单描述")
+PaymentManager.getInstance().pay(context,orderNo, orderTime,instuId,instuName, amount, desc)
         .callBack(new PaymentResultCallBack() {
             @Override
            public void onPaymentError(String code, String errorMsg, String orderNo) {
@@ -131,8 +137,10 @@ PaymentManager.getInstance().pay(Context context, String orderNo, String orderTi
 |:-:|:-:|:-:|:-:|:-:| 
 |orderNo|String|订单号，当前订单的唯一标示|否|2018090422345|
 |orderTime|long|订单生成的时间，格式：时间戳|否|1531450606|
+|instuId|String|订单对应的商户号|否|B1000543466777|
+|instuName|String|订单对应的商户名称|否|雅马哈商城|
 |amount|String|订单支付的金额，格式：两位小数|否|45.57|
-|desc|String|订单描述信息|是|小熊饼干商店|
+|desc|String|订单描述信息|是|雅马哈商城支付订单|
 |callBack|PaymentResultCallBack|支付结果回调接口|否|参考sample代码|
 
 #### 3，我的银行卡
@@ -153,3 +161,8 @@ PaymentManager.getInstance().updatePayPassword(context);
 |code|描述|
 |:-:|:-:|
 |0|成功|
+|-1|失败|
+
+#### 混淆
+
+如果代码进行了混淆，请把sample下面的混淆文件复制到项目的混淆文件中

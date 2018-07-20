@@ -3,7 +3,19 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <!--下面两个颜色值拷贝到主项目的color文件中，可以更改色值-->
+
+    <!--导航栏标题颜色-->
+    <color name="zqpay_bar_title_color">#111111</color>
+    <!--导航栏副标题颜色-->
+    <color name="zqpay_bar_title_sub_color">#111111</color>
+    <!--导航栏分割线颜色-->
+    <color name="zqpay_bar_divider_color">#e3e3e3</color>
+    <!--导航栏背景色-->
+    <color name="zqpay_bar_background_color">#ffffff</color>
+    <!--sdk主题色，按钮默认主题色-->
     <color name="zqpay_theme">#ff9800</color>
+    <!--按钮按下颜色-->
+    <color name="zqpay_theme_down">#ff8200</color>
+    <!--主题色文字颜色-->
     <color name="zqpay_theme_title">#ff9000</color>
 </resources>
