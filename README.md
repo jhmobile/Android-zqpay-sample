@@ -1,6 +1,6 @@
 # 支付SDK 集成文档
 
-### 当前最新版本：v1.1.3
+### 当前最新版本：v1.1.7
 
 ### SDK包含的业务功能
 
@@ -48,7 +48,7 @@ configurations.all {
 }
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.1.3',{
+    compile ('com.zqpay.zl:zqpay:1.1.7',{
     exclude group: 'com.android.support', module: 'support-v4'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
@@ -175,4 +175,4 @@ PaymentManager.getInstance().updatePayPassword(context);
 |:-:|:-:|
 |绑银行卡|123456|
 |绑华创资金账户|111111|
-|通过绑定银行卡找回支付密码|7310|
+|通过已绑定银行卡找回支付密码|7310|

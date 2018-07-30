@@ -51,7 +51,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 // TODO: 2018/7/13   参数：desc       类型： String   描述 ： 订单描述             示例： 这是一笔主动发起的祝福
                 // 上下文，定单号，订单生成时间的时间戳，订单金额，订单描述
                 PaymentManager.getInstance().pay(MainActivity.this, System.currentTimeMillis() + "", System.currentTimeMillis(),
-                        "12345","玛雅哈商店", "5048.54", "这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福")
+                        "B00000627","玛雅哈商店", "5048.54", "这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福")
                         .callBack(new PaymentResultCallBack() {
                             @Override
                             public void onPaymentError(String code, String errorMsg, String orderNo) {//支付成功回调

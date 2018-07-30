@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:pay="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        style="@style/table_row_background"
+       >
+        <TextView
+            style="@style/short_title"
+            android:text="订单号" />
+
+        <com.zqpay.zl.view.tabrow.ClearEditText
+            android:id="@+id/et_cvn2"
+            style="@style/edit_text"
+            android:hint="@string/bank_cvn2_tip"
+            android:inputType="number"
+            android:maxLines="1"
+            android:maxLength="3"
+            pay:input_type="card" />
+    </LinearLayout>
+</LinearLayout>
