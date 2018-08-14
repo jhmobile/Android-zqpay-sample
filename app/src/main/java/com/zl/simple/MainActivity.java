@@ -9,6 +9,7 @@ import com.jinhui365.router.core.IRouteCallBack;
 import com.jinhui365.router.core.RouteManager;
 import com.jinhui365.router.core.RouteResponse;
 import com.zqpay.zl.interceptor.AccountRouteURL;
+import com.zqpay.zl.interfac.BalanceResultCallBack;
 import com.zqpay.zl.interfac.PaymentResultCallBack;
 import com.zqpay.zl.manager.UserManager;
 import com.zqpay.zl.paymentsdk.PaymentManager;
@@ -19,6 +20,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TableRow trAccountPay;
     private TableRow trAccountBank;
     private TableRow trUpdatePwd;
+    private TableRow trBalance;
+    private TableRow trBalancePage;
+    private TableRow trLogout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,29 +55,49 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 // TODO: 2018/7/13   参数：desc       类型： String   描述 ： 订单描述             示例： 这是一笔主动发起的祝福
                 // 上下文，定单号，订单生成时间的时间戳，订单金额，订单描述
                 PaymentManager.getInstance().pay(MainActivity.this, System.currentTimeMillis() + "", System.currentTimeMillis(),
-                        "B00000627","玛雅哈商店", "5048.54", "这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福")
+                        "B00000627", "玛雅哈商店", "5048.54", "这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福")
                         .callBack(new PaymentResultCallBack() {
                             @Override
                             public void onPaymentError(String code, String errorMsg, String orderNo) {//支付成功回调
 
-                                ToastUtil.show(MainActivity.this,orderNo+":"+errorMsg, 0);
+                                ToastUtil.show(MainActivity.this, orderNo + ":" + errorMsg, 0);
                             }
 
                             @Override
                             public void onPaymentSuccess(String orderNo) {
-                                ToastUtil.show(MainActivity.this, orderNo+":成功", 0);//支付失败回调
+                                ToastUtil.show(MainActivity.this, orderNo + ":成功", 0);//支付失败回调
                             }
                         });
+                break;
+            case R.id.tr_balance://余额
+               PaymentManager.getInstance().getBalanceData(new BalanceResultCallBack() {
+                   @Override
+                   public void getBalance(double v) {
+                       ToastUtil.show(MainActivity.this,  "当前账户余额:"+v, 0);//支付失败回调
+                   }
+               });
+                break;
+            case R.id.tr_balance_page://余额页面
+                PaymentManager.getInstance().gotoBalanceDetail(MainActivity.this);
+                break;
+            case R.id.tr_logout:
+                PaymentManager.getInstance().cleanInfo(MainActivity.this);
                 break;
         }
     }
 
     private void initView() {
-        trAccountPay = (TableRow) findViewById(R.id.tr_account_pay);
+        trAccountPay = findViewById(R.id.tr_account_pay);
         trAccountPay.setOnClickListener(this);
-        trAccountBank = (TableRow) findViewById(R.id.tr_account_bank);
+        trAccountBank = findViewById(R.id.tr_account_bank);
         trAccountBank.setOnClickListener(this);
-        trUpdatePwd = (TableRow) findViewById(R.id.tr_update_pwd);
+        trUpdatePwd = findViewById(R.id.tr_update_pwd);
         trUpdatePwd.setOnClickListener(this);
+        trBalance = findViewById(R.id.tr_balance);
+        trBalance.setOnClickListener(this);
+        trBalancePage = findViewById(R.id.tr_balance_page);
+        trBalancePage.setOnClickListener(this);
+        trLogout = findViewById(R.id.tr_logout);
+        trLogout.setOnClickListener(this);
     }
 }

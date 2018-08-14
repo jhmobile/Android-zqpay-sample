@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
+
     <com.zqpay.zl.view.tabrow.TableRow
         android:id="@+id/tr_account_pay"
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         app:left_title="支付"
         app:left_title_color="@color/C2"
         app:show_right_icon="true" />
+
     <com.zqpay.zl.view.tabrow.TableRow
         android:id="@+id/tr_account_bank"
         android:layout_width="match_parent"
@@ -32,4 +34,28 @@
         app:left_title_color="@color/C2"
         app:show_right_icon="true" />
 
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="我的余额"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_balance_page"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="余额页面"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="退出登录"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
 </LinearLayout>

@@ -1,6 +1,6 @@
 # 支付SDK 集成文档
 
-### 当前最新版本：v1.1.7
+### 当前最新版本：v1.2.0
 
 ### SDK包含的业务功能
 
@@ -48,7 +48,7 @@ configurations.all {
 }
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.1.7',{
+    compile ('com.zqpay.zl:zqpay:1.2.0',{
     exclude group: 'com.android.support', module: 'support-v4'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
@@ -143,15 +143,47 @@ PaymentManager.getInstance().pay(Context context, String orderNo, String orderTi
 |desc|String|订单描述信息|是|雅马哈商城支付订单|
 |callBack|PaymentResultCallBack|支付结果回调接口|否|参考sample代码|
 
-#### 3，我的银行卡
+##### 3.1 支付是否支持余额配置：
+
+###### 1，SDK默认支持
+###### 2，如果不需要支持，在String.xml里面配置如下设置：
+
+ * \<!--true  : 支持余额支付    false   不支持余额支付--\>\<string name\=\"zqpay_config_pay_need_balance\"\>false\<\/string\>
+
+
+#### 4，我的银行卡
 <pre><code>
 PaymentManager.getInstance().gotoBankList(context);
 
 </code></pre>
 
-#### 4，修改交易密码
+#### 5，修改交易密码
 <pre><code>
 PaymentManager.getInstance().updatePayPassword(context);
+
+</code></pre>
+
+
+#### 6，我的余额（页面）
+<pre><code>
+ PaymentManager.getInstance().gotoBalanceDetail(context);
+
+</code></pre>
+
+#### 7，我的余额（数据）
+<pre><code>
+  PaymentManager.getInstance().getBalanceData(new BalanceResultCallBack() {
+                    @Override
+                    public void getBalance(double balance) {
+                        ToastUtil.show(context, "当前账户余额:" + balance, 0);
+                    }
+                });
+
+</code></pre>
+
+#### 8,退出登录：在APP退出登录的地方调用，用于清空当前用户的相关数据
+<pre><code>
+ PaymentManager.getInstance().cleanInfo(context);
 
 </code></pre>
 
