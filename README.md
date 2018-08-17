@@ -1,6 +1,6 @@
 # 支付SDK 集成文档
 
-### 当前最新版本：v1.2.0
+### 当前最新版本：v1.2.4
 
 ### SDK包含的业务功能
 
@@ -48,7 +48,7 @@ configurations.all {
 }
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.2.0',{
+    compile ('com.zqpay.zl:zqpay:1.2.4',{
     exclude group: 'com.android.support', module: 'support-v4'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
