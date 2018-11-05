@@ -1,6 +1,6 @@
 # 支付SDK 集成文档
 
-### 当前最新版本：v1.2.9
+### 当前最新版本：v1.5.2
 
 ### SDK包含的业务功能
 
@@ -48,7 +48,7 @@ configurations.all {
 }
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.2.9',{
+    compile ('com.zqpay.zl:zqpay:1.5.2',{
     exclude group: 'com.android.support', module: 'support-v4'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
@@ -116,16 +116,24 @@ setUser(String userId, String token)
 #### 3， 支付
 <pre><code>
 PaymentManager.getInstance().pay(context,orderNo, orderTime,instuId,instuName, amount, desc)
-        .callBack(new PaymentResultCallBack() {
-            @Override
-           public void onPaymentError(String code, String errorMsg, String orderNo) {
-                ToastUtil.show(MainActivity.this, errorMsg, 0);
-           }
-            @Override
-           public void onPaymentSuccess(String orderNo) {
-                ToastUtil.show(MainActivity.this, "成功", 0);
-           }
-       });
+    .withParams(httpParams)
+    .callBack(new PaymentResultCallBack() {
+         //map返回当前支付所有的request参数
+         @Override
+         public void onPaymentCancel(String orderNo, Map<String, Object> map) {
+               Log.e("TAG", map.toString());//取消支付
+         }
+         @Override
+         public void onPaymentError(String code, String errorMsg, String orderNo, Map<String, Object> map) {
+               Log.e("TAG", map.toString());
+               ToastUtil.show(MainActivity.this, orderNo + ":" + errorMsg, 0);//支付失败回调
+        }
+        @Override
+        public void onPaymentSuccess(String orderNo, Map<String, Object> map) {
+               Log.e("TAG", map.toString());
+               ToastUtil.show(MainActivity.this, orderNo + ":成功", 0);//支付失败回调
+        }
+ });
 
 </code></pre>
 

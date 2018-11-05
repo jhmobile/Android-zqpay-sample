@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">zl-zqpay</string>
+    <string name="app_name">支付SDK</string>
     <!--true  : 支持余额支付    false   不支持余额支付-->
     <!--<string name="zqpay_config_pay_need_balance">true</string>-->
 </resources>

@@ -3,18 +3,17 @@ package com.zl.simple;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 
-import com.jinhui365.router.core.IRouteCallBack;
-import com.jinhui365.router.core.RouteManager;
-import com.jinhui365.router.core.RouteResponse;
-import com.zqpay.zl.interceptor.AccountRouteURL;
 import com.zqpay.zl.interfac.BalanceResultCallBack;
 import com.zqpay.zl.interfac.PaymentResultCallBack;
-import com.zqpay.zl.manager.UserManager;
 import com.zqpay.zl.paymentsdk.PaymentManager;
 import com.zqpay.zl.util.ToastUtil;
 import com.zqpay.zl.view.tabrow.TableRow;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends Activity implements View.OnClickListener {
     private TableRow trAccountPay;
@@ -24,6 +23,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TableRow trBalancePage;
     private TableRow trLogout;
 
+    private HashMap<String, String> httpParams = new HashMap<>();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         // TODO: 2018/7/13 在获取用户证联的userId和token的地方 ，设置用户信息
         PaymentManager.getInstance().setUser("2018917", "QFsiIxVJEXE=");
         initView();
+        httpParams.put("resv", "hahahahahh");
     }
 
 
@@ -53,29 +55,39 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 // TODO: 2018/7/13   参数：instuName  类型： String   描述 ： 订单的商户名称                    示例：玛雅哈商店
                 // TODO: 2018/7/13   参数：amount     类型： String   描述 ： 订单金额，保留两位小时             示例：56.65
                 // TODO: 2018/7/13   参数：desc       类型： String   描述 ： 订单描述             示例： 这是一笔主动发起的祝福
+                // TODO: 2018/11/5   参数：httpParams  类型 Map<String,String>  描述：接口扩展字段
                 // 上下文，定单号，订单生成时间的时间戳，订单金额，订单描述
                 PaymentManager.getInstance().pay(MainActivity.this, System.currentTimeMillis() + "", System.currentTimeMillis(),
                         "B00000627", "玛雅哈商店", "5048.54", "这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福这是一笔主动发起的祝福")
+                        .withParams(httpParams)
                         .callBack(new PaymentResultCallBack() {
+                            //map：request入参
                             @Override
-                            public void onPaymentError(String code, String errorMsg, String orderNo) {//支付成功回调
-
-                                ToastUtil.show(MainActivity.this, orderNo + ":" + errorMsg, 0);
+                            public void onPaymentCancel(String orderNo, Map<String, Object> map) {
+                                Log.e("TAG", map.toString());
+                                ToastUtil.show(MainActivity.this, orderNo + ":取消支付", 0);
                             }
 
                             @Override
-                            public void onPaymentSuccess(String orderNo) {
+                            public void onPaymentError(String code, String errorMsg, String orderNo, Map<String, Object> map) {
+                                Log.e("TAG", map.toString());
+                                ToastUtil.show(MainActivity.this, orderNo + ":" + errorMsg, 0);//支付失败回调
+                            }
+
+                            @Override
+                            public void onPaymentSuccess(String orderNo, Map<String, Object> map) {
+                                Log.e("TAG", map.toString());
                                 ToastUtil.show(MainActivity.this, orderNo + ":成功", 0);//支付失败回调
                             }
                         });
                 break;
             case R.id.tr_balance://余额
-               PaymentManager.getInstance().getBalanceData(new BalanceResultCallBack() {
-                   @Override
-                   public void getBalance(double v) {
-                       ToastUtil.show(MainActivity.this,  "当前账户余额:"+v, 0);//支付失败回调
-                   }
-               });
+                PaymentManager.getInstance().getBalanceData(new BalanceResultCallBack() {
+                    @Override
+                    public void getBalance(double v) {
+                        ToastUtil.show(MainActivity.this, "当前账户余额:" + v, 0);//支付失败回调
+                    }
+                });
                 break;
             case R.id.tr_balance_page://余额页面
                 PaymentManager.getInstance().gotoBalanceDetail(MainActivity.this);
