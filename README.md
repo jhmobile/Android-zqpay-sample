@@ -1,6 +1,7 @@
 # 支付SDK 集成文档
 
-### 当前最新版本：v1.5.2
+### 当前最新版本：v2.0.0
+### 具体接入实现建议参考demo
 
 ### SDK包含的业务功能
 
@@ -39,20 +40,14 @@ allprojects {
 
 ##### 在主项目的build.gradle中添加sdk对应引用：
 <pre><code>
-configurations.all {
-    resolutionStrategy {
-        //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
-        force 'com.android.support:support-annotations:24.0.0'
-        force 'com.android.support:recyclerview-v7:24.0.0'
-    }
-}
 dependencies{
     ......
-    compile ('com.zqpay.zl:zqpay:1.5.2',{
-    exclude group: 'com.android.support', module: 'support-v4'
+    implementation ('com.zqpay.zl:zqpay:2.0.0',{
+    exclude group: 'com.android.support'
     })
-    //可根据buildToolsVersion版本酌情指定版本，不能低于24.0.0
-   compile 'com.android.support:appcompat-v7:26.1.0'
+    //可根据buildToolsVersion版本酌情指定版本，不能低于26.1.0
+   implementation 'com.android.support:appcompat-v7:28.0.0'
+   implementation 'com.android.support:recyclerview-v7:28.0.0'
 }
 </code></pre>
 

@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.zl.simple"
         minSdkVersion 16
@@ -41,18 +41,16 @@ android {
         }
     }
 }
-configurations.all {
-    resolutionStrategy {
-        force 'com.android.support:support-annotations:24.0.0'
-        force 'com.android.support:recyclerview-v7:24.0.0'
-    }
-}
+
+
 dependencies {
-    compile('com.zqpay.zl:zqpay:1.5.2', {
-        exclude group: 'com.android.support', module: 'support-v4'
+
+    implementation('com.zqpay.zl:zqpay:2.0.0', {
+        exclude group: 'com.android.support'
     })
     // compile project(':library-zqpay')
     //noinspection GradleCompatible
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 
 }
