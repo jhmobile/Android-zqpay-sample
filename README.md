@@ -197,12 +197,18 @@ PaymentManager.getInstance().updatePayPassword(context);
 
 </code></pre>
 
+<p>
 PaymentManager.getInstance().openAccount(context,params)相关参数
+</p>
+
 |参数|类型|描述|是否可为空|示例|
 |:-:|:-:|:-:|:-:|:-:| 
 |params|HashMap<String,Object>|传递给开户页面的参数|是|参考params表|
 
+<p>
 params 参数表：
+</p>
+
 |参数|类型|描述|是否可为空|示例|
 |:-:|:-:|:-:|:-:|:-:| 
 |clientName|String|姓名|是|东陵需|
