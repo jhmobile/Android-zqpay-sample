@@ -191,7 +191,7 @@ PaymentManager.getInstance().updatePayPassword(context);
 </code></pre>
 
 
-#### 9,开户绑定     可以在单独调用开户
+#### 9,开户绑卡:     可以单独调用开户绑卡
 <pre><code>
  PaymentManager.getInstance().openAccount(context,params);
 
@@ -199,12 +199,12 @@ PaymentManager.getInstance().updatePayPassword(context);
 
 PaymentManager.getInstance().openAccount(context,params)相关参数
 |参数|类型|描述|是否可为空|示例|
-|:-:|:-:|:-:|:-:| :-:| 
+|:-:|:-:|:-:|:-:|:-:| 
 |params|HashMap<String,Object>|传递给开户页面的参数|是|参考params表|
 
 params 参数表：
 |参数|类型|描述|是否可为空|示例|
-|:-:|:-:|:-:|:-:| :-:| 
+|:-:|:-:|:-:|:-:|:-:| 
 |clientName|String|姓名|是|东陵需|
 |idNo|String|身份证号|是|11010119700307067X|
 |bankAccount|String|银行卡号|是|6227001020519396852|
