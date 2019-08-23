@@ -45,7 +45,7 @@ android {
 
 dependencies {
 
-    implementation('com.zqpay.zl:zqpay:2.0.0', {
+    implementation('com.zqpay.zl:zqpay:2.1.2', {
         exclude group: 'com.android.support'
     })
     // compile project(':library-zqpay')

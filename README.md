@@ -1,11 +1,11 @@
 # 支付SDK 集成文档
 
-### 当前最新版本：v2.0.0
+### 当前最新版本：v2.1.2
 ### 具体接入实现建议参考demo
 
 ### SDK包含的业务功能
 
-1. 绑定银行卡(未提供调起API，在首次支付等环节由SDK调起))
+1. 绑定银行卡(提供单独调起API，而起在首次支付等环节SDK也会触发))
 2. 收银台支付（提供调起和回调API）
 3. 银行卡管理（提供调起API）
 4. 修改支付密码、忘记支付密码（提供调起API）
@@ -42,7 +42,7 @@ allprojects {
 <pre><code>
 dependencies{
     ......
-    implementation ('com.zqpay.zl:zqpay:2.0.0',{
+    implementation ('com.zqpay.zl:zqpay:2.1.2',{
     exclude group: 'com.android.support'
     })
     //可根据buildToolsVersion版本酌情指定版本，不能低于26.1.0
@@ -189,6 +189,25 @@ PaymentManager.getInstance().updatePayPassword(context);
  PaymentManager.getInstance().cleanInfo(context);
 
 </code></pre>
+
+
+#### 9,开户绑定     可以在单独调用开户
+<pre><code>
+ PaymentManager.getInstance().openAccount(context,params);
+
+</code></pre>
+
+PaymentManager.getInstance().openAccount(context,params)相关参数
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:| :-:| 
+|params|HashMap<String,Object>|传递给开户页面的参数|是|参考params表|
+
+params 参数表：
+|参数|类型|描述|是否可为空|示例|
+|:-:|:-:|:-:|:-:| :-:| 
+|clientName|String|姓名|是|东陵需|
+|idNo|String|身份证号|是|11010119700307067X|
+|bankAccount|String|银行卡号|是|6227001020519396852|
 
 
 #### 支付结果code码描述

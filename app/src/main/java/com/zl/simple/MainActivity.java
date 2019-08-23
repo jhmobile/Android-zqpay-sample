@@ -22,6 +22,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private TableRow trBalance;
     private TableRow trBalancePage;
     private TableRow trLogout;
+    private TableRow trOpenAccount;
 
     private HashMap<String, String> httpParams = new HashMap<>();
 
@@ -92,8 +93,15 @@ public class MainActivity extends Activity implements View.OnClickListener {
             case R.id.tr_balance_page://余额页面
                 PaymentManager.getInstance().gotoBalanceDetail(MainActivity.this);
                 break;
-            case R.id.tr_logout:
+            case R.id.tr_logout://退出登录
                 PaymentManager.getInstance().cleanInfo(MainActivity.this);
+                break;
+            case R.id.tr_open_account://开户绑卡
+                HashMap<String,Object> params = new HashMap<>();
+                params.put("clientName","东陵雪");//姓名
+                params.put("idNo","11010119700307067X");//身份证号
+                params.put("bankAccount","6227001020519396852");//银行卡号
+                PaymentManager.getInstance().openAccount(MainActivity.this,params);
                 break;
         }
     }
@@ -111,5 +119,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         trBalancePage.setOnClickListener(this);
         trLogout = findViewById(R.id.tr_logout);
         trLogout.setOnClickListener(this);
+        trOpenAccount = findViewById(R.id.tr_open_account);
+        trOpenAccount.setOnClickListener(this);
     }
 }

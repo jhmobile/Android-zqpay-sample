@@ -15,7 +15,14 @@
         app:left_title="支付"
         app:left_title_color="@color/C2"
         app:show_right_icon="true" />
-
+    <com.zqpay.zl.view.tabrow.TableRow
+        android:id="@+id/tr_open_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:hide_line="false"
+        app:left_title="开户绑卡"
+        app:left_title_color="@color/C2"
+        app:show_right_icon="true" />
     <com.zqpay.zl.view.tabrow.TableRow
         android:id="@+id/tr_account_bank"
         android:layout_width="match_parent"
